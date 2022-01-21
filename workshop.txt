@@ -1,0 +1,6 @@
+version=1
+title=MapEditWithoutPens
+description=MapEditWithoutPens
+description=
+tags=
+visibility=public
