@@ -30,22 +30,19 @@ end
 
 KaldoMapEdit.ISWorldMapSymbols_checkInventory = ISWorldMapSymbols.checkInventory
 function ISWorldMapSymbols:checkInventory()
-	local inv = self.character and self.character:getInventory() or nil
+	KaldoMapEdit.ISWorldMapSymbols_checkInventory(self)
+
 	local currentEnabled = nil
 	local firstEnabled = nil
 	for _,colorBtn in ipairs(self.colorButtons) do
 		colorBtn.enable = true
 		colorBtn.borderColor.a = 0.4 -- not selected
-		if colorBtn.enable then
-			firstEnabled = firstEnabled or colorBtn
-			if colorBtn.buttonInfo.colorInfo:equals(self.currentColor) then
-				currentEnabled = colorBtn
-				colorBtn.borderColor.a = 1.0
-			end
-			colorBtn.tooltip = nil
-		else
-			colorBtn.tooltip = colorBtn.buttonInfo.tooltip
+		firstEnabled = firstEnabled or colorBtn
+		if colorBtn.buttonInfo.colorInfo:equals(self.currentColor) then
+			currentEnabled = colorBtn
+			colorBtn.borderColor.a = 1.0
 		end
+		colorBtn.tooltip = nil
 	end
 	if not currentEnabled then
 		if firstEnabled ~= nil then
@@ -56,56 +53,21 @@ function ISWorldMapSymbols:checkInventory()
 		end
 	end
 	self:updateSymbolColors()
-	local canWrite = self:canWrite()
 	for _,symbolButton in ipairs(self.buttonList) do
-		symbolButton.enable = canWrite
-		if canWrite then
-			symbolButton.tooltip = nil
-		else
-			symbolButton.tooltip = getText("Tooltip_Map_CantWrite")
-		end
+		symbolButton.enable = true
+		symbolButton.tooltip = nil
 	end
-	local canErase = self:canErase()
-	self.addNoteBtn.enable = canWrite
-	self.editNoteBtn.enable = canWrite and canErase
-	self.moveBtn.enable = canWrite and canErase
-	self.removeBtn.enable = canErase
+	
+	
+	self.addNoteBtn.enable = true
+	self.editNoteBtn.enable = true
+	self.moveBtn.enable = true
+	self.removeBtn.enable = true
 
-	if canWrite then
-		self.addNoteBtn.tooltip = nil
-	else
-		self.addNoteBtn.tooltip = getText("Tooltip_Map_CantWrite")
-	end
-
-	if canWrite and canErase then
-		self.editNoteBtn.tooltip = nil
-		self.moveBtn.tooltip = nil
-	else
-		self.editNoteBtn.tooltip = getText("Tooltip_Map_CantEdit")
-		self.moveBtn.tooltip = getText("Tooltip_Map_CantEdit")
-	end
-
-	if canErase then
-		self.removeBtn.tooltip = nil
-	else
-		self.removeBtn.tooltip = getText("Tooltip_Map_CantErase")
-	end
-
-	if self.currentTool == self.tools.AddSymbol and not canWrite then
-		self:setCurrentTool(nil)
-	end
-	if self.currentTool == self.tools.AddNote and not canWrite then
-		self:setCurrentTool(nil)
-	end
-	if self.currentTool == self.tools.EditNote and not (canWrite and canErase) then
-		self:setCurrentTool(nil)
-	end
-	if self.currentTool == self.tools.MoveAnnotation and not (canWrite and canErase) then
-		self:setCurrentTool(nil)
-	end
-	if self.currentTool == self.tools.RemoveAnnotation and not canErase then
-		self:setCurrentTool(nil)
-	end
+	self.addNoteBtn.tooltip = nil
+	self.editNoteBtn.tooltip = nil
+	self.moveBtn.tooltip = nil
+	self.removeBtn.tooltip = nil
 end
 
 
