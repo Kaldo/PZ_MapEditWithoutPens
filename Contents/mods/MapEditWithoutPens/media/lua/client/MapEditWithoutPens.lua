@@ -1,34 +1,28 @@
-require "ISUI/ISButton"
-require "ISUI/ISColorPicker"
-require "ISUI/ISPanelJoypad"
-require "ISUI/ISSpinBox"
-require "ISUI/ISTickbox"
 require "ISUI/Maps/ISMap"
-require "ISUI/Maps/ISWorldMap"
 require "ISUI/Maps/ISWorldMapSymbols"
 
 local KaldoMapEdit = {}
-KaldoMapEdit.originalCanWrite = ISMap.canWrite
--- ISMap.canWrite = function()
-	-- KaldoMapEdit.originalCanWrite()
-    -- return true
--- end
 
-KaldoMapEdit.originalCanErase = ISMap.canErase
--- ISMap.canErase = function()
-	-- KaldoMapEdit.originalCanErase()
-    -- return true
--- end
-
-
--- local orig_canWrite = ISMap.canWrite
+KaldoMapEdit.ISMap_CanWrite = ISMap.canWrite
 function ISMap:canWrite()
-	KaldoMapEdit.originalCanWrite(self)
+	KaldoMapEdit.ISMap_CanWrite(self)
 	return true
 end
 
--- local orig_canErase = ISMap.canErase
+KaldoMapEdit.ISMap_CanErase = ISMap.canErase
 function ISMap:canErase()
-	KaldoMapEdit.originalCanErase(self)
+	KaldoMapEdit.ISMap_CanErase(self)
+	return true
+end
+
+KaldoMapEdit.ISWorldMapSymbols_CanWrite2 = ISWorldMapSymbols.canWrite
+function ISWorldMapSymbols:canWrite()
+	KaldoMapEdit.ISWorldMapSymbols_CanWrite2(self)
+	return true
+end
+
+KaldoMapEdit.ISWorldMapSymbols_CanErase2 = ISWorldMapSymbols.canErase
+function ISWorldMapSymbols:canErase()
+	KaldoMapEdit.ISWorldMapSymbols_CanErase2(self)
 	return true
 end
