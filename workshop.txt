@@ -1,6 +1,5 @@
 version=1
-title=MapEditWithoutPens
-description=MapEditWithoutPens
-description=
+title=Map Edit Without Pens
+description=Enable map editing without having pens, pencils, crayons or the eraser in your inventory
 tags=
 visibility=public
