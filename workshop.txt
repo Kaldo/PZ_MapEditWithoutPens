@@ -1,6 +1,8 @@
 version=1
 id=2729545876
 title=Map Edit Without Pens
-description=Enable map editing without having pens, pencils, crayons or the eraser in your inventory
+description=Enable map editing without having pens, pencils, crayons or the eraser in your inventory. I find it a bit frustrating having to carry all these practically weightless items and have them clutter your inventory.
+description=
+description=Compatible with Wipe's Extra Map Symbols.
 tags=Build 41;Interface;Map
-visibility=unlisted
+visibility=public
