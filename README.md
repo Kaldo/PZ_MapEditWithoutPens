@@ -4,8 +4,6 @@ Enable map editing without having pens, pencils, crayons or the eraser in your i
 
 Compatible with Wipe's Extra Map Symbols.
 
-Only tested in singleplayer.
-
 ![Poster](preview.png)
 
 Workshop ID: 2729545876

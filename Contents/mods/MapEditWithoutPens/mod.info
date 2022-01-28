@@ -3,7 +3,6 @@ id=Kaldo_MapEditWithoutPens
 description=Enable map editing without having pens, pencils, crayons or the eraser in your inventory
 
 authors=Kaldo
-url=https://github.com/Kaldo/PZ_MapEditWithoutPens
 modversion=1.0
 versionMin=41.65
 tags=Build 41,Interface,Map
